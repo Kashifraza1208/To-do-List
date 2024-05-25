@@ -36,7 +36,7 @@ export const getSingleTask = (id) => async (dispatch) => {
   try {
     dispatch({ type: SINGLE_TASK_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/task/${id}`);
+    const { data } = await axios.get(`/api/v1/tasks/${id}`);
     console.log(data);
 
     dispatch({ type: SINGLE_TASK_SUCCESS, payload: data.todo });
@@ -53,7 +53,7 @@ export const addTask =
       const config = { headers: { "Content-Type": "application/json" } };
 
       const { data } = await axios.post(
-        `/api/v1/task/new`,
+        `/api/v1/tasks`,
         { title, description, duedate, status },
         config
       );
@@ -71,7 +71,7 @@ export const deleteTask = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_TASK_REQUEST });
 
-    const { data } = await axios.delete(`/api/v1/task/${id}`);
+    const { data } = await axios.delete(`/api/v1/tasks/${id}`);
 
     dispatch({ type: DELETE_TASK_SUCCESS, payload: data });
   } catch (error) {
@@ -87,7 +87,7 @@ export const updateTask =
       const config = { headers: { "Content-Type": "application/json" } };
 
       const { data } = await axios.put(
-        `/api/v1/task/${id}`,
+        `/api/v1/tasks/${id}`,
         { title, description, duedate, status },
         config
       );
